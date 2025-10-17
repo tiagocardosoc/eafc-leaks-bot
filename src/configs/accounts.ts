@@ -5,13 +5,12 @@ export const MONITORED_ACCOUNTS = [
   "DetectiveFUT",
   "TEDDY127_",
   "DonkTrading",
-  "BPMnerd",
-  "UTSources"
+  "BPMnerd"
 ]
 
 export const MONITORING_CONFIG = {
   intervalSeconds: 3600,
-  maxResults: 10,
+  maxResults: 16,
   excludeReplies: true,
   excludeRetweets: true,
   excludeQuotes: true
