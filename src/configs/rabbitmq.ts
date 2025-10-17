@@ -24,14 +24,6 @@ class RabbitMQConnection {
     this.url = `amqp://${user}:${password}@${host}:${port}`
   }
 
-  /**
-   * Conecta ao RabbitMQ e cria um canal de comunicação
-   *
-   * CONCEITO: Canal (Channel)
-   * - É como uma "linha telefônica virtual" dentro da conexão
-   * - Usamos canais para enviar e receber mensagens
-   * - Múltiplos canais podem compartilhar uma conexão
-   */
   async connect(): Promise<void> {
     try {
       if (this.connection && this.channel) {
@@ -41,17 +33,14 @@ class RabbitMQConnection {
 
       console.log("🔌 Conectando ao RabbitMQ...")
 
-      // Cria a conexão
       const connection = await amqp.connect(this.url)
       this.connection = connection
 
-      // Cria o canal
       const channel = await connection.createChannel()
       this.channel = channel
 
       console.log("✅ Conectado ao RabbitMQ com sucesso!")
 
-      // Handlers para reconexão em caso de erro
       connection.on("error", err => {
         console.error("❌ Erro na conexão RabbitMQ:", err)
       })
@@ -67,10 +56,6 @@ class RabbitMQConnection {
     }
   }
 
-  /**
-   * Retorna o canal de comunicação
-   * Se não estiver conectado, conecta automaticamente
-   */
   async getChannel(): Promise<Channel> {
     if (!this.channel) {
       await this.connect()
@@ -81,9 +66,6 @@ class RabbitMQConnection {
     return this.channel
   }
 
-  /**
-   * Fecha a conexão com o RabbitMQ
-   */
   async close(): Promise<void> {
     try {
       if (this.channel) {
@@ -99,5 +81,4 @@ class RabbitMQConnection {
   }
 }
 
-// Exporta uma instância única (Singleton)
 export default new RabbitMQConnection()
