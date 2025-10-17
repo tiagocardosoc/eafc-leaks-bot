@@ -3,19 +3,12 @@ import * as dotenv from "dotenv"
 
 dotenv.config()
 
-/**
- * 🐰 RabbitMQ Connection Manager
- *
- * Este serviço gerencia a conexão com o RabbitMQ usando o padrão Singleton.
- * Garante que apenas uma conexão seja criada e reutilizada em toda a aplicação.
- */
 class RabbitMQConnection {
   private connection: ChannelModel | null = null
   private channel: Channel | null = null
   private readonly url: string
 
   constructor() {
-    // Monta a URL de conexão do RabbitMQ
     const host = process.env.RABBITMQ_HOST || "localhost"
     const port = process.env.RABBITMQ_PORT || "5672"
     const user = process.env.RABBITMQ_USER || "admin"
