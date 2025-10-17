@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "eafc-leaks",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

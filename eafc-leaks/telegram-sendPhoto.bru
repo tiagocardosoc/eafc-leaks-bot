@@ -1,0 +1,31 @@
+meta {
+  name: telegram-sendPhoto
+  type: http
+  seq: 2
+}
+
+post {
+  url: https://api.telegram.org/bot%3CSEU_TOKEN%3E/sendPhoto
+  body: multipartForm
+  auth: inherit
+}
+
+headers {
+  Content-Type: multipart/form-data
+}
+
+body:multipart-form {
+  chat_id: <SEU_CHAT_ID>
+  photo: https://pbs.twimg.com/profile_images/1590968738358079488/IY9Gx6Ok_400x400.jpg
+  caption: '''
+    🚨 TESTE DE IMAGEM
+    
+    Este é um teste do bot de leaks EAFC
+    
+    ⚠️ ATENÇÃO: CUIDADO COM O HYPE DE CARTAS E VERIFIQUE A VERACIDADE DAS INFORMAÇÕES!
+  '''
+}
+
+settings {
+  encodeUrl: false
+}
